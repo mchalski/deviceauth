@@ -369,10 +369,10 @@ func (d *DevAuthApiHandlers) DevAdmDeleteDeviceAuthSetHandler(w rest.ResponseWri
 		return
 	}
 
-	err := d.devAuth.DeleteAuthSet(ctx, aset.DeviceId, authId)
+	err = d.devAuth.DeleteAuthSet(ctx, aset.DeviceId, authId)
 	switch err {
 	case nil:
-		break
+		w.WriteHeader(http.StatusNoContent)
 	case store.ErrDevNotFound:
 		w.WriteHeader(http.StatusNoContent)
 		return
